@@ -1,5 +1,6 @@
 var config = {};
 
+// User variable
 // Twitter API Key can be apply here
 // https://apps.twitter.com
 config.TWITTER_API_KEY = 'twitterApiKey';
