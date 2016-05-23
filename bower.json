@@ -1,0 +1,43 @@
+{
+  "name": "sharechiwai-node-demo",
+  "description": "This application will be use as template for my future Node Development",
+  "main": "app.js",
+  "authors": [
+    "sharechiwai"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "sharechiwai"
+  ],
+  "homepage": "localhost:6001",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.3",
+    "modernizr": "^3.3.1"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/js/bootstrap.min.js",
+        "dist/css/bootstrap.min.css",
+        "less/bootstrap.less"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "less/font-awesome.less",
+        "css/font-awesome.min.css",
+        "scss/font-awesome.scss"
+      ]
+    }
+  }
+}

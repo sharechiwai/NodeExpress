@@ -1,0 +1,30 @@
+{
+  "name": "sharechiwai-node-demo",
+  "version": "1.0.0",
+  "description": "This application will be use as template for my future Node Development",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "sharechiwai"
+  ],
+  "author": "sharechiwai",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "sendgrid": "^2.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.0.0",
+    "gulp-jscs": "^3.0.2",
+    "gulp-jshint": "^2.0.1",
+    "gulp-nodemon": "^2.0.7",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
+    "wiredep": "^4.0.0"
+  }
+}
