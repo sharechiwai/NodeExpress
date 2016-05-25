@@ -1,10 +1,16 @@
 var express = require('express');
-var sendgrid = require("sendgrid")('');
+
+
+var app = express();
+
+
+var request = require('request');
+// use path module to get the root path
 var homeRouter = express.Router();
 
 
-var router = function(nav) {
-
+var router = function(nav, config) {
+var sendgrid = require('sendgrid')(config.SEND_GRID_API_KEY);
   homeRouter.route('/')
     .get(function(req, res) {
       res.render('home/index', {
@@ -22,17 +28,28 @@ var router = function(nav) {
         content: 'contact'
       });
     });
+    homeRouter.route('sentEmail')
+    .post(function(req,res){
+      console.log("test");
+      console.log(req.body.email);
+      res.send("yeah");
+    });
   homeRouter.route('/contactSent')
-    .get(function(req, res) {
-      var email = new sendgrid.Email();
+    .post(function(req, res) {
+  //    var email = new sendgrid.Email();
+      console.log("testing");
+      console.log(req.body.email);
+      console.log("emd");
+    //  var contact = req.body.contact;
+      //:/contact:/email:/subject:/content
+      /*
+      email.addTo(config.CONTACT_EMAIL_TO);
+      email.setFrom(config.CONTACT_EMAIL_FROM );
+      email.setSubject('Sending with SendGrid is Fun');
+      email.setHtml('and easy to do anywhere, even with Node.js');
 
-      email.addTo("To");
-      email.setFrom("from");
-      email.setSubject("Sending with SendGrid is Fun");
-      email.setHtml("and easy to do anywhere, even with Node.js");
-
-      sendgrid.send(email);
-      res.send("Sent");
+      sendgrid.send(email);*/
+      res.send(req.body.length);
     });
 /*
   homeRouter.route('/:id')
