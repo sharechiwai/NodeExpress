@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Encode / Decode Html</h2>
+  <div class="form-group">
+    <label for="source">Source:</label>
+    <textarea class="form-control" rows="5" id="source"></textarea>
+  </div>
+  <button id="encodeHtml" class="btn btn-success">Encode Html</button>
+  <button id="decodeHtml" class="btn btn-info">Decode Html</button>
+  <div class="form-group">
+    <label for="result">Result:</label>
+    <textarea class="form-control" rows="5" id="result"></textarea>
+  </div>
+</div>
+<script>
+$( document ).ready(function() {
+  $("#encodeHtml").click(function(){
+    $("#result").val($('<div/>').text($("#source").val()).html());
+  });
+
+  $("#decodeHtml").click(function(){
+    $("#result").val($('<div/>').html($("#source").val()).text());
+  });
+});
+</script>

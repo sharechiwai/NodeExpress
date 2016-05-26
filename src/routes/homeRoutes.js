@@ -28,18 +28,13 @@ var sendgrid = require('sendgrid')(config.SEND_GRID_API_KEY);
         content: 'contact'
       });
     });
-    homeRouter.route('sentEmail')
-    .post(function(req,res){
-      console.log("test");
-      console.log(req.body.email);
-      res.send("yeah");
-    });
+
   homeRouter.route('/contactSent')
     .post(function(req, res) {
   //    var email = new sendgrid.Email();
-      console.log("testing");
+      console.log('testing');
       console.log(req.body.email);
-      console.log("emd");
+      console.log('end');
     //  var contact = req.body.contact;
       //:/contact:/email:/subject:/content
       /*

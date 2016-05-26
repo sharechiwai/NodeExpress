@@ -18,6 +18,7 @@ var nav = [{
 
 // set up route
 var bookRouter = require('./src/routes/bookRoutes')(nav);
+var demoRouter = require('./src/routes/demoRoutes')(nav,config);
 var homeRouter = require('./src/routes/homeRoutes')(nav,config);
 
 app.use(express.static('static'));
@@ -34,6 +35,7 @@ app.get('/test', function(req, res) {
     res.send(config.helloworld);
 });
 
+app.use('/Demo', demoRouter);
 app.use('/Books', bookRouter);
 app.use('/', homeRouter);
 
