@@ -7,7 +7,7 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
-var config = require('./config/config');
+var config = require('./config/config-sample');
 var nav = [{
     Link: '/Books',
     Text: 'Book'
