@@ -27,7 +27,8 @@ var router = function (nav, config) {
     })
   homeRouter.route('/curl')
     .get(function (req, res) {
-      var url = 'http://skiplagged.com/api/pokemon.php?bounds=51.6708671345488, -1.288671345488,51.6718671345488, -1.289671345488'
+      var url = req.query.url;
+      // 'http://skiplagged.com/api/pokemon.php?bounds=51.6708671345488, -1.288671345488,51.6718671345488, -1.289671345488'
       request(url, function (error, response, body) {
         if (!error && response.statusCode == 200) {
           console.log('request url: ' + url)
