@@ -1,10 +1,10 @@
 var express = require('express');
 
-var demoRouter = express.Router();
+var appRouter = express.Router();
 
 var router = function(nav, config) {
 
-    demoRouter.route('/')
+    appRouter.route('/')
         .get(function(req, res) {
             res.render('demo/index', {
                 title: 'ShareChiWai',
@@ -13,7 +13,7 @@ var router = function(nav, config) {
             });
         });
 
-    demoRouter.route('/encodDecodeHtml')
+    appRouter.route('/networktools')
         .get(function(req, res) {
             res.render('demo/index', {
                 title: 'ShareChiWai',
@@ -22,7 +22,7 @@ var router = function(nav, config) {
             });
         });
 
-    demoRouter.route('/ref')
+    appRouter.route('/ref')
         .get(function(req, res) {
             res.render('demo/index', {
                 title: 'ShareChiWai',
@@ -31,7 +31,6 @@ var router = function(nav, config) {
             });
         });
 
-
-    return demoRouter;
+    return appRouter;
 };
 module.exports = router;
