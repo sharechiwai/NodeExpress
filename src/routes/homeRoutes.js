@@ -25,6 +25,14 @@ var router = function(nav, config) {
                 content: 'contact'
             });
         })
+           homeRouter.route('/speech')
+        .get(function(req, res) {
+            res.render('home/index1', {
+                title: 'ShareChiWai',
+                nav: nav,
+                content: 'speech'
+            });
+        })
     homeRouter.route('/curl')
         .get(function(req, res) {
             var url = req.query.url;
