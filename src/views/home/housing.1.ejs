@@ -1,0 +1,35 @@
+<h1>Housing</h1>
+<button id="btn">Search</button>
+
+<script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC1-MsuxxgLyVkhbOn2htRPoowWPg4k_kY",
+    authDomain: "prophack2016.firebaseapp.com",
+    databaseURL: "https://prophack2016.firebaseio.com",
+    storageBucket: "prophack2016.appspot.com",
+    messagingSenderId: "563445108249"
+  };
+  firebase.initializeApp(config);
+
+   this.auth = firebase.auth();
+  this.database = firebase.database();
+  this.storage = firebase.storage();
+  // Initiates Firebase auth and listen to auth state changes.
+  //this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
+  console.log( this.auth);
+
+  function loadMsg(){
+     this.messagesRef = this.database.ref('messages');
+     console.log(this.messagesRef);
+  }
+
+  $( document ).ready(function() {
+    $("#btn").click(function(){
+      loadMsg();
+        alert("");
+    });
+});
+</script>
+

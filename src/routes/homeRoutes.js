@@ -6,10 +6,10 @@ var request = require('request');
 // use path module to get the root path
 var homeRouter = express.Router();
 
-var router = function(nav, config) {
+var router = function (nav, config) {
     var sendgrid = require('sendgrid')(config.SEND_GRID_API_KEY);
     homeRouter.route('/')
-        .get(function(req, res) {
+        .get(function (req, res) {
             res.render('home/index', {
                 title: 'ShareChiWai',
                 nav: nav,
@@ -18,26 +18,34 @@ var router = function(nav, config) {
         });
 
     homeRouter.route('/contact')
-        .get(function(req, res) {
+        .get(function (req, res) {
             res.render('home/index', {
                 title: 'ShareChiWai',
                 nav: nav,
                 content: 'contact'
             });
         })
-           homeRouter.route('/speech')
-        .get(function(req, res) {
+    homeRouter.route('/speech')
+        .get(function (req, res) {
             res.render('home/index1', {
                 title: 'ShareChiWai',
                 nav: nav,
                 content: 'speech'
             });
         })
+         homeRouter.route('/housing')
+        .get(function (req, res) {
+            res.render('home/index_clean', {
+                title: 'ShareChiWai',
+                nav: nav,
+                content: 'housing'
+            });
+        })
     homeRouter.route('/curl')
-        .get(function(req, res) {
+        .get(function (req, res) {
             var url = req.query.url;
 
-            request(url, function(error, response, body) {
+            request(url, function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     console.log('request url: ' + url);
 
@@ -48,7 +56,7 @@ var router = function(nav, config) {
         })
 
     homeRouter.route('/contactSent')
-        .post(function(req, res) {
+        .post(function (req, res) {
             //    var email = new sendgrid.Email()
             console.log('testing');
             console.log(req.body.email);
@@ -64,17 +72,17 @@ var router = function(nav, config) {
             sendgrid.send(email);*/
             res.send(req.body.length);
         })
-        /*
-          homeRouter.route('/:id')
-            .get(function(req, res) {
-              var id = req.params.id
-              res.render('bookView', {
-                title: 'Books',
-                nav: nav,
-                content: 'samplecontent'
-              })
-            })
-        */
+    /*
+      homeRouter.route('/:id')
+        .get(function(req, res) {
+          var id = req.params.id
+          res.render('bookView', {
+            title: 'Books',
+            nav: nav,
+            content: 'samplecontent'
+          })
+        })
+    */
     return homeRouter;
 }
 module.exports = router;

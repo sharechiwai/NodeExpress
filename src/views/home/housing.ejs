@@ -1,0 +1,372 @@
+<h1>Housing</h1>
+<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC1-MsuxxgLyVkhbOn2htRPoowWPg4k_kY",
+    authDomain: "prophack2016.firebaseapp.com",
+    databaseURL: "https://prophack2016.firebaseio.com",
+    storageBucket: "prophack2016.appspot.com",
+    messagingSenderId: "563445108249"
+  };
+ 
+ var dbRef = new Firebase("https://prophack2016.firebaseio.com");
+var contactsRef = dbRef.child('messages')
+
+
+  $( document ).ready(function() {
+    $("#btn").click(function(){
+   // AddData();
+ //  console.log(GetNoOfEntry());
+      GetNoOfEntry();
+      
+    });
+
+
+ $("#submit").click(function(){
+   /*
+    console.log($("input[name='q1']:checked"). val());
+    console.log($("input[name='q2']:checked"). val());
+    console.log($("input[name='q3']:checked"). val());
+    console.log($("input[name='q4']:checked"). val());
+    console.log($("input[name='q5']:checked"). val());
+*/
+AddSurveyData();
+      
+    });
+
+
+});
+
+function GetNoOfEntry(){
+
+ // sync down from server
+ var list = [];
+ var i = 0;
+ contactsRef.on('value', function(snap) { list = snap.val(); 
+ for (var l in list.messages) {
+ 
+  i++;
+}
+
+console.log(i);
+
+});
+}
+
+function LoadData(){
+ contactsRef.orderByKey().on("child_added", function(snapshot) {
+        console.log(snapshot.val().name);
+      });
+
+}
+
+function AddSurveyData(){
+  var newPostRef =contactsRef.push( 
+    {"submitType": "survey",data:
+    {
+      "name" : $("#name").val(),
+      "email" : $("#email").val(),
+      "company":$("#company").val(),
+      "title": $("#title").val(),
+      "q1":$("input[name='q1']:checked"). val(),
+      "q2":$("input[name='q2']:checked"). val(),
+      "q3":$("input[name='q3']:checked"). val(),
+      "q4":$("input[name='q4']:checked"). val(),
+      "q5":$("input[name='q5']:checked"). val()
+    }
+    }
+    );
+    alert(newPostRef.key());
+}
+</script>
+
+
+<div class="form-horizontal">
+	<fieldset>
+
+		<!-- Form Name -->
+		<legend>Garden Hop</legend>
+
+		<!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="textinput">Name</label>
+			<div class="col-md-4">
+				<input id="name" name="name" type="text" placeholder="John Lewis" class="form-control input-md" required="">
+
+			</div>
+		</div>
+		<!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="email">Email</label>
+			<div class="col-md-4">
+				<input id="email" name="email" type="text" placeholder="abc@abc.com" class="form-control input-md" required="">
+
+			</div>
+		</div>
+
+
+		<!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="company">Company</label>
+			<div class="col-md-4">
+				<input id="company" name="company" type="text" placeholder="PropTech " class="form-control input-md">
+
+			</div>
+		</div>
+
+		<!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="title">Title</label>
+			<div class="col-md-4">
+				<input id="title" name="title" type="text" placeholder="CEO" class="form-control input-md">
+
+			</div>
+
+
+
+			<!-- Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="btn"></label>
+				<div class="col-md-4">
+					<button id="btn" name="btn" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+
+	</fieldset>
+	</div>
+
+	<hr/>
+	<h1>Survey</h1>
+
+
+	<fieldset>
+
+		<!-- Form Name -->
+		<legend>Garden Hop Survey</legend>
+
+		<!-- Multiple Radios -->
+		<div class="form-group">
+			<label class="col-md-8 control-label" for="q1">Do you believe there is a shortage of housing in the U.K.?</label>
+			<div class="col-md-8">
+				<div class="radio">
+					<label for="q1-0">
+      <input type="radio" name="q1" id="q1-0" value="1" >
+      Yes
+    </label>
+				</div>
+				<div class="radio">
+					<label for="q1-1">
+      <input type="radio" name="q1" id="q1-1" value="0">
+      No
+    </label>
+				</div>
+			</div>
+		</div>
+
+		<!-- Multiple Radios -->
+		<div class="form-group">
+			<label class="col-md-8 control-label" for="q2">Do you believe that Generation Rent is receiving enough support to buy their first property?</label>
+			<div class="col-md-8">
+				<div class="radio">
+					<label for="q2-0">
+      <input type="radio" name="q2" id="q2-0" value="1" >
+      Yes
+    </label>
+				</div>
+				<div class="radio">
+					<label for="q2-1">
+      <input type="radio" name="q2" id="q2-1" value="0">
+      No
+    </label>
+				</div>
+			</div>
+		</div>
+
+		<!-- Multiple Radios -->
+		<div class="form-group">
+			<label class="col-md-8 control-label" for="q3">Do you believe enough is being done to build the 250,000 homes per year that are required? </label>
+			<div class="col-md-8">
+				<div class="radio">
+					<label for="q3-0">
+      <input type="radio" name="q3" id="q3-0" value="1" >
+      Yes
+    </label>
+				</div>
+				<div class="radio">
+					<label for="q3-1">
+      <input type="radio" name="q3" id="q3-1" value="0">
+      No
+    </label>
+				</div>
+			</div>
+		</div>
+
+		<!-- Multiple Radios -->
+		<div class="form-group">
+			<label class="col-md-8 control-label" for="q4">Would you want to be part of the solution to help Generation Rent get on the property ladder?</label>
+			<div class="col-md-8">
+				<div class="radio">
+					<label for="q4-0">
+      <input type="radio" name="q4" id="q4-0" value="1" >
+      Yes
+    </label>
+				</div>
+				<div class="radio">
+					<label for="q4-1">
+      <input type="radio" name="q4" id="q4-1" value="0">
+      No
+    </label>
+				</div>
+			</div>
+		</div>
+
+		<!-- Multiple Radios -->
+		<div class="form-group">
+			<label class="col-md-8 control-label" for="Q5">if you had extra space in your garden, would you be willing to take part in our scheme.</label>
+			<div class="col-md-8">
+				<div class="radio">
+					<label for="Q5-0">
+      <input type="radio" name="q5" id="Q5-0" value="1" >
+      Yes
+    </label>
+				</div>
+				<div class="radio">
+					<label for="Q5-1">
+      <input type="radio" name="q5" id="Q5-1" value="0">
+      No
+    </label>
+				</div>
+			</div>
+		</div>
+
+		<!-- Button -->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="submit"></label>
+			<div class="col-md-4">
+				<button id="submit" name="submit" class="btn btn-primary">Submit</button>
+			</div>
+		</div>
+
+	</fieldset>
+
+
+  <hr/>
+
+<fieldset>
+
+<!-- Form Name -->
+<legend>Garden Hop Survey</legend>
+
+<!-- Multiple Radios -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="qa1">Do you have difficulty in providing enough housing in your area?</label>
+  <div class="col-md-4">
+  <div class="radio">
+    <label for="qa1-0">
+      <input type="radio" name="qa1" id="qa1-0" value="1" checked="checked">
+      Yes
+    </label>
+	</div>
+  <div class="radio">
+    <label for="qa1-1">
+      <input type="radio" name="qa1" id="qa1-1" value="0">
+      No
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Multiple Radios -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="qa2">what is the biggest barrier to providing housing in your area?</label>
+  <div class="col-md-4">
+  <div class="radio">
+    <label for="qa2-0">
+      <input type="radio" name="qa2" id="qa2-0" value="Land" checked="checked">
+      Land
+    </label>
+	</div>
+  <div class="radio">
+    <label for="qa2-1">
+      <input type="radio" name="qa2" id="qa2-1" value="Finance">
+      Finance
+    </label>
+	</div>
+  <div class="radio">
+    <label for="qa2-2">
+      <input type="radio" name="qa2" id="qa2-2" value="Capacity">
+      Capacity
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Multiple Radios -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="qa3">Do you think enough is being done to help first time buyers?</label>
+  <div class="col-md-4">
+  <div class="radio">
+    <label for="qa3-0">
+      <input type="radio" name="qa3" id="qa3-0" value="1" checked="checked">
+      Yes
+    </label>
+	</div>
+  <div class="radio">
+    <label for="qa3-1">
+      <input type="radio" name="qa3" id="qa3-1" value="0">
+      No
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Multiple Radios -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="qa4">Would you be willing to team up with us to help solve the housing crisis in your area?</label>
+  <div class="col-md-4">
+  <div class="radio">
+    <label for="qa4-0">
+      <input type="radio" name="qa4" id="qa4-0" value="1" checked="checked">
+      Yes
+    </label>
+	</div>
+  <div class="radio">
+    <label for="qa4-1">
+      <input type="radio" name="qa4" id="qa4-1" value="0">
+      No
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Multiple Radios -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="qa5">Would you be willing to have a conversation with us after this event to try and take this further?</label>
+  <div class="col-md-4">
+  <div class="radio">
+    <label for="qa5-0">
+      <input type="radio" name="qa5" id="qa5-0" value="1" checked="checked">
+      Yes
+    </label>
+	</div>
+  <div class="radio">
+    <label for="qa5-1">
+      <input type="radio" name="qa5" id="qa5-1" value="0">
+      No
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+
+</fieldset>
