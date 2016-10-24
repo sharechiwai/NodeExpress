@@ -41,6 +41,7 @@ var bookRouter = require('./src/routes/bookRoutes')(nav);
 var apiRouter = require('./src/routes/apiRoutes')(nav, config);
 var appRouter = require('./src/routes/appRoutes')(nav, config);
 var demoRouter = require('./src/routes/demoRoutes')(nav, config);
+var tutorialRouter = require('./src/routes/tutorialRoutes')(nav, config);
 var homeRouter = require('./src/routes/homeRoutes')(nav, config);
 
 app.use(express.static('static'));
@@ -63,6 +64,7 @@ app.use('/api', apiRouter);
 app.use('/Demo', demoRouter);
 app.use('/Books', bookRouter);
 app.use('/app', appRouter);
+app.use('/tutorial', tutorialRouter);
 app.use('/', homeRouter);
 
 app.listen(port, function(err) {
