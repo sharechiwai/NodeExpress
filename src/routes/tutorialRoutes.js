@@ -25,6 +25,15 @@ var router = function(nav, config) {
             });
         });
 
+        tutorialRouter.route('/firebase')
+        .get(function(req, res) {
+            res.render('tutorial/index', {
+                title: 'ShareChiWai Tutorial',
+                nav: nav,
+                content: 'firebase'
+            });
+        });
+
     return tutorialRouter;
 };
 module.exports = router;
