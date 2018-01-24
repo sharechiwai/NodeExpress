@@ -22,7 +22,7 @@
   "dependencies": {
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.6.3",
-    "modernizr": "^3.3.1"
+    "modernizr": "^3.5.0"
   },
   "overrides": {
     "bootstrap": {
